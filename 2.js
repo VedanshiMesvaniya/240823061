@@ -1,6 +1,6 @@
 //Find maximum of two numbers
-const a = 10;
-const b = 20;
+const a = 5;
+const b = 9;
 if (a > b) {
     console.log(`${a} is greater than ${b}`);
 }   
