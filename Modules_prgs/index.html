@@ -1,0 +1,209 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Server with API Data</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #4a4a4a;
+        }
+
+        #data-container {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .post {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .post:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            color: #0056b3;
+        }
+
+        p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Welcome to My Page!</h1>
+    <p>This page fetches data from an API and displays it below.</p>
+
+    <div id="data-container">
+        <p>Loading data...</p>
+    </div>
+
+    <script>
+        // This script runs in the browser after the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const dataContainer = document.getElementById('data-container');
+            const apiUrl = 'https://jsonplaceholder.typicode.com/posts?_limit=5'; 
+
+            // Use the Fetch API to get data
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // Convert the response to JSON
+                })
+                .then(posts => {
+                    dataContainer.innerHTML = ''; // Clear the "Loading..." message
+
+                    // Loop through each post and create HTML elements to display it
+                    posts.forEach(post => {
+                        const postElement = document.createElement('div');
+                        postElement.classList.add('post');
+
+                        const titleElement = document.createElement('h2');
+                        titleElement.textContent = post.title;
+
+                        const bodyElement = document.createElement('p');
+                        bodyElement.textContent = post.body;
+
+                        postElement.appendChild(titleElement);
+                        postElement.appendChild(bodyElement);
+
+                        dataContainer.appendChild(postElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                    dataContainer.innerHTML = '<p>Sorry, could not load data.</p>';
+                });
+        });
+    </script>
+
+</body>
+
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Server with API Data</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Welcome! Data from API:</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+            <tr>
+                <td colspan="3" style="text-align: center;">Loading data...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const tableBody = document.getElementById('tablebody');
+            const apiUrl = 'https://jsonplaceholder.typicode.com/posts?_limit=10';
+
+            try {
+                // Use async/await for fetching data
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const posts = await response.json();
+
+                // Clear the "Loading..." message
+                tableBody.innerHTML = '';
+
+                // Loop through posts and create table rows
+                posts.forEach(post => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${post.id}</td>
+                        <td>${post.title}</td>
+                        <td>${post.body}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+
+            } catch (error) {
+                console.error('Fetch error:', error);
+                tableBody.innerHTML = '<tr><td colspan="3" style="color: red; text-align: center;">Sorry, could not load data.</td></tr>';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
