@@ -173,10 +173,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const tableBody = document.getElementById('tablebody');
-            const apiUrl = 'https://jsonplaceholder.typicode.com';
+            const apiUrl = 'https://jsonplaceholder.typicode.com/posts?_limit=100';
 
             try {
-                // Use async/await for fetching data
+                //async/await for fetching data
                 const response = await fetch(apiUrl);
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -186,7 +186,7 @@
                 // Clear the "Loading..." message
                 tableBody.innerHTML = '';
 
-                // Loop through posts and create table rows
+                // Loop for table rows
                 posts.forEach(post => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
