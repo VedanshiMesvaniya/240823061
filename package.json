@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node rout_prg/rout.js",
+    "dev": "nodemon rout_prg/rout.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,14 @@
   "bugs": {
     "url": "https://github.com/Vedanshi0908/240823061/issues"
   },
-  "homepage": "https://github.com/Vedanshi0908/240823061#readme"
+  "homepage": "https://github.com/Vedanshi0908/240823061#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "moment": "^2.30.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }
