@@ -6,5 +6,6 @@ if(num%2==0){
     console.log("Odd Number");
 } 
 console.log("New line");
+console.log("New line 2");
 const a=10;
 console.log(a);
