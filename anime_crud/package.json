@@ -1,5 +1,5 @@
 {
-  "name": "animelist_crud",
+  "name": "anime_crud",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,5 +8,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "joi": "^18.0.1",
+    "nodemon": "^3.1.10"
+  }
 }
